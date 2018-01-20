@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ButtonToolbar, DropdownButton, MenuItem, FormControl, ControlLabel } from 'react-bootstrap';
 import axios from 'axios';
+import './customsearch.css';
 
 
 
@@ -13,7 +14,7 @@ class CustomSearch extends Component {
             minPrice: null,
             maxPrice: null,
             avgVolume: null,
-            savedSearches: [{name: 'Jordan'}]
+            savedSearches: []
         }
     }
 
@@ -28,20 +29,30 @@ class CustomSearch extends Component {
         axios.post('/api/newsearch', newSearch)
         .then((resp) => {
             this.setState({ savedSearches: resp.data})
-        }).catch(error => console.error(error))
+        }).catch(error => console.error(error));
+        this.clearInput();
     }
 
     handleChange(e){
         this.setState({ searchName: e.target.value})
     }
 
+    clearInput(){
+        this.setState({ sector: '', minPrice: null, maxPrice: null, avgVolume: null, searchName: ''});
+    }
+
+
     render(){
         return(
-            <div>
-                <p>Create Custom Search:</p>
-                <ButtonToolbar>
-                    <FormControl type="text"  placeholder="Enter Text" onChange={(e) => this.handleChange(e)} />
-                    <DropdownButton title="Sector" id="dropdown-size-medium" onSelect={(val)=> this.setState({sector: val}) }>
+            <div className="body">
+                <h3>Create Custom Search:</h3>
+                <ButtonToolbar className="name-input">
+                    <ControlLabel>Create A Name For Your Search:</ControlLabel>
+                    <FormControl type="text" placeholder="Enter Text"  onChange={(e) => this.handleChange(e)} />
+                </ButtonToolbar>
+                <div className="search-menu"> 
+                <ButtonToolbar> 
+                    <DropdownButton className="dropdown" title="Sector" id="dropdown-size-medium" onSelect={(val)=> this.setState({sector: val}) }>
                         <MenuItem eventKey="consumer">Consumer</MenuItem>
                         <MenuItem eventKey="energy">Energy</MenuItem>
                         <MenuItem eventKey="financial">Financial</MenuItem>
@@ -78,22 +89,25 @@ class CustomSearch extends Component {
                         <MenuItem eventKey="1500000">1,500,000</MenuItem>                        
                     </DropdownButton>
                 </ButtonToolbar>
-                <div>
-                    <p>Name: {this.state.searchName} Sector: {this.state.sector} Min. Price: {this.state.minPrice} Max Price: {this.state.maxPrice} Avg Daily Volume: {this.state.avgVolume}</p>
                 </div>
-                <div>
-                    <button onClick={() => {this.createSearch()}}>CREATE</button>
+                <div className="search-labels">
+                    <p>Name: {this.state.searchName}</p> <p>Sector: {this.state.sector}</p> <p>Min. Price: {this.state.minPrice}</p> <p>Max Price: {this.state.maxPrice}</p> <p>Avg Daily Volume: {this.state.avgVolume}</p>
                 </div>
-                <span>
+                <div className="btnrow clearfix">
+                    <div className="createbtn">
+                        <button onClick={() => {this.createSearch()}}>CREATE</button>
+                        <button onClick={() => {this.clearInput()}} >CLEAR</button>
+                    </div>
+                </div>
+                <span className="saved-searches">
                     <p>Saved Searches: </p>
                     <ButtonToolbar>
-                    <DropdownButton title="Saved Searches" id="dropdown-size-medium" >
-                        {this.state.savedSearches.map((s) => 
-                            <MenuItem key={s.id} eventKey="">{s.name}</MenuItem>
-                        ) }                     
-                    </DropdownButton>
-                </ButtonToolbar>
-
+                        <DropdownButton title="Saved Searches" id="dropdown-size-medium" >
+                            {this.state.savedSearches.map((s) => 
+                                <MenuItem key={s.id} eventKey="">{s.name}</MenuItem>
+                            )}                     
+                        </DropdownButton>
+                    </ButtonToolbar>
                 </span>
             </div>            
            
