@@ -5,7 +5,7 @@ var sectorSearch = [{name: "consumer", minPrice: 30, maxPrice: 150, avgVolume: 1
     {name: "financial", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
     {name: "healthcare", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
     {name: "industrial", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
-    {name: "basicmaterials", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
+    {name: "basic_materials", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
     {name: "utilites", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
     {name: "technology", minPrice: 30, maxPrice: 150, avgVolume: 1000000},
 ]

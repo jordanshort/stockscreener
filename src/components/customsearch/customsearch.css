@@ -1,8 +1,9 @@
 .body {
     position: relative;
-    margin: 10px;
-    max-width: 700px;
+    margin-top: 10px;
+    max-width: 900px;
     min-width: 700px;
+    margin-bottom: 40px;
 
 }
 
@@ -44,6 +45,7 @@
 .saved-searches {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 
 }
 

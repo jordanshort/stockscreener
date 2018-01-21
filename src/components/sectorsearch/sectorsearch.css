@@ -1,0 +1,14 @@
+.body {
+    position: relative;
+    margin: 10px;
+    max-width: 900px;
+    min-width: 700px;
+    margin-bottom: 25px;
+
+}
+
+.sector-btns {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+}
