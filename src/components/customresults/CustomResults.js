@@ -1,6 +1,7 @@
 import React from 'react';
 import './customresults.css';
 
+
 function CustomResults(props){
     return(
         <div className="resultgroup">
@@ -8,7 +9,7 @@ function CustomResults(props){
             <ul className="wholelist1" >
                 {props.resultsToDisplay.map((stock) => {
                     return(
-                        <li key={stock.ticker} className="stockbox1"> <a href={`https://finviz.com/quote.ashx?t=${stock.ticker}`}> 
+                        <li key={stock.ticker} className="stockbox1"> <a href={`https://finviz.com/quote.ashx?t=${stock.ticker}`} > 
                             <div className="row-container1" >
                                 <h4 className="companyName1">{stock.sector}</h4>
                             </div>

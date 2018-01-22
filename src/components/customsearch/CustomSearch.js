@@ -73,11 +73,11 @@ class CustomSearch extends Component {
                 <h3>Create Custom Search:</h3>
                 <ButtonToolbar className="name-input">
                     <ControlLabel>Create A Name For Your Search:</ControlLabel>
-                    <FormControl type="text" placeholder="Enter Text"  onChange={(e) => this.handleChange(e)} />
+                    <FormControl type="text" value={this.state.searchName} placeholder="Enter Text"  onChange={(e) => this.handleChange(e)} />
                 </ButtonToolbar>
                 <div className="search-menu"> 
                 <ButtonToolbar> 
-                    <DropdownButton className="dropdown" title="Sector" id="dropdown-size-medium" onSelect={(val)=> this.setState({sector: val}) }>
+                    <DropdownButton className="dropdown" title="Sector"  id="dropdown-size-medium" onSelect={(val)=> this.setState({sector: val}) }>
                         <MenuItem eventKey="consumer">Consumer</MenuItem>
                         <MenuItem eventKey="energy">Energy</MenuItem>
                         <MenuItem eventKey="financial">Financial</MenuItem>
