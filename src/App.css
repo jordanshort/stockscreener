@@ -5,7 +5,7 @@
 	justify-content: center;
 	align-items: center;
 	align-content: space-around;
-	background-color: rgba(165, 165, 165, 0.1)
+	background-color: rgba(119, 119, 119, 0.1)
 }
 
 .componentwrapper {
@@ -14,9 +14,15 @@
 	
 }
 
-.searchwrapper {
+.sectorwrapper {
 	width: 100vw;
 	background-color: white;
+	display: flex;
+	justify-content: center;
+} 
+
+.searchwrapper {
+	width: 100vw;
 	display: flex;
 	justify-content: center;
 	
@@ -25,7 +31,7 @@
 .jumbotron {
 	width: 900px;
 	padding: 5px;
-	background-color: rgba(165, 165, 165, 0.1)
+	background-color: transparent;
 }
 
 .resultswrapper {

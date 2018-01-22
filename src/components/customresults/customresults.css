@@ -1,20 +1,23 @@
-.wholelist {
+
+
+
+.wholelist1 {
     display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: flex-end;
     align-content: center;
-    
-    
+    width: 1100px;
+    margin-left: -60px
 }
 
 
-.stockbox {
+.stockbox1 {
     /* position: absolute;
     top: 0;
     left: 0; */
-    width: 250px;
+    width: 230px;
     background: #fff;
     padding-top: 30px;
     margin-bottom: 20px;
@@ -24,14 +27,14 @@
     border-radius: 5px;
 }
 
-.row-container {
+.row-container1 {
     width: 100%;
     padding-right: 30px;
     padding-left: 30px;
     position: relative;
 }
 
-.companyName {
+.companyName1 {
     text-align: center;
     min-height: 34px;
     font-style: normal;
@@ -41,7 +44,7 @@
     color: #999; 
 }
 
-.stocksymbol {
+.stocksymbol1 {
     font-size: 65px;
     color: #333;
     text-align: center;
@@ -49,7 +52,7 @@
     font-weight: bold;
 }
 
-.price-container {
+.price-container1 {
     font-size: 50px;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-style: normal;
@@ -59,7 +62,7 @@
     margin-bottom: 5px;
 }
 
-.lastQuote {
+.lastQuote1 {
     text-align: center;
     font-style: normal;
     font-weight: normal;
@@ -68,7 +71,7 @@
     color: #999; 
 }
 
-.greenbox {
+.greenbox1 {
     position: relative;
     width: 100%;
     bottom: 0px;
@@ -76,11 +79,3 @@
     background-color: green;
     border-radius: 5px;
 }
-
-
-
-
-
-
-
-

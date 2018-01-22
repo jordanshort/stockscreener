@@ -12,7 +12,7 @@ class App extends Component {
     this.sectorParams = [];
     this.state = {
         selectedSector: {},
-        stocksToDisplay: [{companyName: 'Apple', symbol: 'AAPL', lastPrice: 145.45}, {companyName: 'Microsoft', symbol: 'MSFT', lastPrice: 89.01}, {companyName: 'The Drilling Co.', symbol: 'TDC', lastPrice: 209.11}, {companyName: 'Jordan Co', symbol: 'JCO', lastPrice: 219.89}],
+        stocksToDisplay: [],
     }
     this.handleSelector = this.handleSelector.bind(this);
     this.checkState = this.checkState.bind(this);
@@ -27,6 +27,7 @@ componentDidMount(){
 }
 
 submitRequest(){
+  // console.log(this.state.selectedSector);
   axios.get(`https://api.intrinio.com/securities/search?conditions=sector~contains~${this.state.selectedSector.name},average_daily_volume~gt~1000000,close_price~gt~30,close_price~lt~150`
     ,{headers: {
       "Authorization": "Basic " + new Buffer("5a029387f574966088eb820f2284eeb1:cfbe1baab5653cf63286d4b866541643").toString('base64')
@@ -57,10 +58,11 @@ checkState(){
     return (
       <div className="mainwrapper"> 
           <Jumbotron className="jumbotron" > 
-            <h1>Welcome!</h1>
-
+            <h1>StockScreener</h1>
           </Jumbotron>
+          <div className="sectorwrapper">
           <SectorSearch handleSelector={this.handleSelector} sectorParams={this.sectorParams} checkState={this.checkState} submitRequest={this.submitRequest} />
+          </div>
           <div className="searchwrapper">
           <CustomSearch />
           </div>

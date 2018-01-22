@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { ButtonToolbar, DropdownButton, MenuItem, FormControl, ControlLabel } from 'react-bootstrap';
+import { ButtonToolbar, DropdownButton, MenuItem, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import axios from 'axios';
 import './customsearch.css';
+import CustomResults from '../customresults/CustomResults';
 
 
 
@@ -14,7 +15,8 @@ class CustomSearch extends Component {
             minPrice: null,
             maxPrice: null,
             avgVolume: null,
-            savedSearches: []
+            savedSearches: [],
+            resultsToDisplay: []
         }
     }
 
@@ -40,6 +42,29 @@ class CustomSearch extends Component {
     clearInput(){
         this.setState({ sector: '', minPrice: null, maxPrice: null, avgVolume: null, searchName: ''});
     }
+
+    handleSelect(search){
+        this.setState({
+            searchName: search.name,
+            sector: search.sector,
+            minPrice: search.minPrice,
+            maxPrice: search.maxPrice,
+            avgVolume: search.avgVolume
+        })
+    }
+
+    submitRequest(){
+        // console.log(parseInt(this.state.minPrice));
+        axios.get(`https://api.intrinio.com/securities/search?conditions=sector~contains~${this.state.sector},average_daily_volume~gt~${parseInt(this.state.avgVolume, 10)},close_price~gt~${parseInt(this.state.minPrice, 10)},close_price~lt~${parseInt(this.state.maxPrice, 10)}`
+          ,{headers: {
+            "Authorization": "Basic " + new Buffer("5a029387f574966088eb820f2284eeb1:cfbe1baab5653cf63286d4b866541643").toString('base64')
+            }
+          }
+        ).then((resp) => {
+        //   console.log(resp);
+          this.setState({ resultsToDisplay: resp.data.data});
+        }).catch((error) => console.error(error)) 
+      }
 
 
     render(){
@@ -102,14 +127,19 @@ class CustomSearch extends Component {
                 <span className="saved-searches">
                     <p>Saved Searches: </p>
                     <ButtonToolbar>
-                        <DropdownButton title="Saved Searches" id="dropdown-size-medium" >
-                            {this.state.savedSearches.map((s) => 
-                                <MenuItem key={s.id} eventKey="">{s.name}</MenuItem>
+                        <DropdownButton title="Saved Searches" id="dropdown-size-medium" onSelect={(val) => {this.handleSelect(val)}}>
+                            {this.state.savedSearches.map((search) => 
+                                <MenuItem key={search.id} eventKey={search} >{search.name}</MenuItem>
                             )}                     
                         </DropdownButton>
+                        <Button onClick={() =>{this.submitRequest()}}>Search</Button>
                     </ButtonToolbar>
                 </span>
-            </div>            
+                <div>
+                <CustomResults resultsToDisplay={this.state.resultsToDisplay} />
+            </div> 
+            </div>
+                       
            
 
         )

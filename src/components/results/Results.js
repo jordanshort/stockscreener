@@ -6,7 +6,7 @@ function Results(props){
         <ul className="wholelist" >
             {props.stocksArr.map((stock) => {
                 return(
-                    <li key={stock.symbol} className="stockbox">
+                    <li key={stock.ticker} className="stockbox"> <a href={`https://finviz.com/quote.ashx?t=${stock.ticker}`}> 
                         <div className="row-container" >
                             <h4 className="companyName">{stock.sector}</h4>
                         </div>
@@ -20,6 +20,7 @@ function Results(props){
                             <h1 className="price-container">${stock.close_price}</h1>
                         </div>
                         <div className="greenbox"></div>
+                        </a>
                     </li>
                 )
                 })

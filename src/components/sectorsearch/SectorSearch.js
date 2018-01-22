@@ -39,7 +39,7 @@ class SectorSearch extends Component {
         return(
             <div className="body"> 
             <h3>Search By Sector:</h3>
-            <p>Default parameters: Minimum price is $20, Maximum price is $150, Minimum average daily volume is 1,000,000 shares</p>
+            <p>Default parameters: Minimum price is $30, Maximum price is $150, Minimum average daily volume is 1,000,000 shares</p>
             <ButtonToolbar className="sector-btns">
                 <Button value="consumer" onClick={(e) => {this.props.handleSelector(e)}}>Consumer</Button>
                 <Button value="energy" onClick={(e) => {this.props.handleSelector(e, this.props.sectorParams)}}>Energy</Button>
